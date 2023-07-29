@@ -1,4 +1,18 @@
+
+require("dotenv").config();
+
+
+
+
+
 const express =require("express");
+
+
+const mongoose = require("mongoose");
+
+
+
+
 const BodyParser = require("body-parser");
 
 // Database
@@ -14,6 +28,17 @@ booky.use(express.json());
 
 booky.use(BodyParser.urlencoded({extended: true}));
 booky.use(BodyParser.json());
+
+
+
+mongoose.connect(process.env.mongo_url ,
+{
+   useNewUrlParser:true,
+   useUnifiedTopology:true, 
+   useFindAndModify:true,
+   useCreateIndex:false
+  }
+).then(()=>console.log("Connection is established"));
 
 
 /*
